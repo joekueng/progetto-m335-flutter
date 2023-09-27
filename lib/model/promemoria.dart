@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'base_entity.dart';
-import 'identifiers/enum/priority.dart';
 import 'identifiers/enum/color.dart';
+import 'identifiers/enum/priority.dart';
 
 class Note extends BaseEntity{
   static String id = BaseEntity.getId;
