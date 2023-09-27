@@ -6,8 +6,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'My App',
+      theme: ThemeData(
+        useMaterial3: true,
+        primaryColor: Colors.red,
+      ),
       home: Navigation()
     );
   }
