@@ -1,7 +1,10 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'testUI.dart';
+import 'pages/testUI.dart';
+import 'pages/TodayView.dart';
+import 'pages/InboxView.dart';
+import 'pages/NotesView.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -14,9 +17,9 @@ class _NavigationState extends State<Navigation> {
 
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    TestUI(),
-    Text("Inbox"),
-    Text("Notes"),
+    TodayView(),
+    InboxView(),
+    NotesView(),
   ];
 
   void _onItemTapped(int index) {
