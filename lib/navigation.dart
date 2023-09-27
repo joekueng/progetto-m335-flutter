@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'testUI.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -11,9 +12,9 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
 
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    Text("Calendar"),
+    TestUI(),
     Text("Inbox"),
     Text("Notes"),
   ];
