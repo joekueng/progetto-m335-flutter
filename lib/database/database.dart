@@ -8,7 +8,6 @@ class Database{
 
   Database._init();
 
-
   Future _createDB(Database database) async{
     const integerPrimaryKeyAutoincrement = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     const textNotNull = 'TEXT NOT NULL';
