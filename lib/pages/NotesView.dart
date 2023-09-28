@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'NoteDetailView.dart';
 
 class NotesView extends StatefulWidget {
-  const NotesView({super.key});
+  const NotesView({Key? key}) : super(key: key);
 
   @override
   State<NotesView> createState() => _NotesViewState();
@@ -10,12 +11,21 @@ class NotesView extends StatefulWidget {
 class _NotesViewState extends State<NotesView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
-          child: Icon(Icons.note),
-        ),
-      
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Note'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const NoteDetailView(),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
     );
-
   }
 }
+
