@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'CreateNewNote.dart';
 import 'NoteDetailView.dart';
 
-
 class NotesView extends StatefulWidget {
   const NotesView({Key? key}) : super(key: key);
 
