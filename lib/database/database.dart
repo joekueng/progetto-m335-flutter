@@ -1,4 +1,3 @@
-
 import 'package:progetto_m335_flutter/model/note.dart';
 
 class Database{
