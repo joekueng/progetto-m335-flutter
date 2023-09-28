@@ -14,12 +14,20 @@ class TodayView extends StatefulWidget {
 class _TodayViewState extends State<TodayView> {
   @override
   Widget build(BuildContext context) {
-
-    return ListView(
-      children: <Widget>[
-        Reminder(),
-        Reminder(),
-    ]
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Today',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.cyan.shade700,
+      ),
+      body: Container(
+        child: ListView(children: <Widget>[
+          Reminder(),
+          Reminder(),
+        ]),
+      ),
     );
   }
 }

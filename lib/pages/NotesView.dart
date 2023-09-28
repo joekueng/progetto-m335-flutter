@@ -17,7 +17,7 @@ class _NotesViewState extends State<NotesView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Note', style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.lightBlue.shade900,
+        backgroundColor: Colors.cyan.shade700,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -28,7 +28,7 @@ class _NotesViewState extends State<NotesView> {
           );
         },
         child: Icon(Icons.add, color: Colors.white,),
-        backgroundColor: Colors.lightBlue.shade900,
+        backgroundColor: Colors.cyan.shade700,
       ),
 
 
@@ -40,7 +40,7 @@ class _NotesViewState extends State<NotesView> {
               color: Colors.white,
 
               child: ListTile(
-                title: Text("ciao", style: TextStyle(color: Colors.lightBlue.shade900, fontWeight: FontWeight.bold),),
+                title: Text("ciao", style: TextStyle(color: Colors.cyan.shade700, fontWeight: FontWeight.bold),),
                 subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Descrizione della nota:'),],),
                 onTap: () {
                   Navigator.of(context).push(
