@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 //import components
 import '../Components/Reminder.dart';
-import '../Components/EditReminder.dart';
+import '../Components/EditReminderButton.dart';
 
 class TodayView extends StatefulWidget {
   const TodayView({super.key});
