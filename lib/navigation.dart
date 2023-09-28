@@ -47,6 +47,7 @@ class _NavigationState extends State<Navigation> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
