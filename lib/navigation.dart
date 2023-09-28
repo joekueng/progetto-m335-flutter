@@ -5,6 +5,7 @@ import 'pages/testUI.dart';
 import 'pages/TodayView.dart';
 import 'pages/InboxView.dart';
 import 'pages/NotesView.dart';
+import 'pages/test.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -15,11 +16,12 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
 
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
   static const List<Widget> _widgetOptions = <Widget>[
     TodayView(),
     InboxView(),
     NotesView(),
+    Test()
   ];
 
   void _onItemTapped(int index) {
@@ -41,6 +43,7 @@ class _NavigationState extends State<Navigation> {
               icon: Icon(Icons.calendar_today), label: "today"),
           BottomNavigationBarItem(icon: Icon(Icons.inbox), label: "Inbox"),
           BottomNavigationBarItem(icon: Icon(Icons.note), label: "Notes"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings")
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
