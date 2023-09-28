@@ -18,6 +18,5 @@ class Promemoria extends BaseEntity{
   static Color color = Color.none;
 
 
-
 }
 
