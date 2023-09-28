@@ -7,12 +7,6 @@ class Database{
 
   Database._init();
 
-  Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await _initDB('database.db');
-
-    return _database!;
-  }
 
   Future _createDB(Database database) async{
     const integerPrimaryKeyAutoincrement = 'INTEGER PRIMARY KEY AUTOINCREMENT';

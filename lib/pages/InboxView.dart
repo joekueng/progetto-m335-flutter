@@ -10,10 +10,16 @@ class InboxView extends StatefulWidget {
 class _InboxViewState extends State<InboxView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
-          child: Icon(Icons.inbox),
-        )
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Inbox'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
+        child: Icon(Icons.add),
+      ),
+
     );
   }
 }
