@@ -13,7 +13,9 @@ class _NotesViewState extends State<NotesView> {
     return const Scaffold(
         body: Center(
           child: Icon(Icons.note),
-        )
+        ),
+      
     );
+
   }
 }
