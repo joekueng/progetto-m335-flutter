@@ -62,8 +62,24 @@ class NoteDatabase {
     await fillDemoData(database, version);
   }
 
-
   Future fillDemoData(Database database, int version) async {
+
+    var nota = Note();
+    nota.setTitle("Nota 1");
+    nota.setCreationDate("2023-09-56");
+    nota.setLastModificationDate("2023-09-56");
+    nota.setArrayPromemoria("1,2,3,4,5");
+    nota.setDescription("Questo è un esempio di nota 1.");
+
+    await createNote(database, nota);
+
+    print(await readNote(1));
+
+    nota.setDescription("ciao");
+    await updateNote (nota);
+
+    print(await readNote (1));
+
     // Add fake categories
     await database.execute('''
   INSERT INTO note (
@@ -79,7 +95,6 @@ class NoteDatabase {
     'Questo è un esempio di nota 2.'
   )
 ''');
-
 
     await database.execute('''
   INSERT INTO note (
@@ -160,7 +175,6 @@ class NoteDatabase {
     database.close();
   }
 
-
   Future<void> deleteDatabase() async {
     final databasePath = await getDatabasesPath();
     final path = join(databasePath, 'note.db');
@@ -177,28 +191,6 @@ class NoteDatabase {
     return database.isOpen;
   }
 
-
-  Future<void> createNote(Database database, Note note) async {
-    await database.execute('''
-      INSERT INTO note (
-        title,
-        creationDate,
-        lastModificationDate,
-        arrayPromemoria,
-        description,
-
-      ) VALUES (
-        '$note.title}',
-        '$note.creationDate',
-        '$note.lastModificationDate',
-        '$note.arrayPromemoria.toString()',
-        '$note.description',
-      )
-    ''');
-
-    print('note $note.title inserted');
-  }
-
   Future<List<Map>> selectAllPromemoria() async {
     final db = await database;
 
@@ -206,7 +198,6 @@ class NoteDatabase {
 
     return maps;
   }
-
 
   Future<List<Map>> selectAllNotes() async {
     final db = await database;
@@ -216,34 +207,26 @@ class NoteDatabase {
     return maps;
   }
 
+  Future<void> createNote(Database database, Note note) async {
+    await database.insert(
+      'note',
+      note.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
 
-  Future<void> createPromemoria(Database database,
-      Promemoria promemoria) async {
-    await database.execute('''
-      INSERT INTO promemoria (
-        title,
-        creationDate,
-        lastModificationDate,
-        expirationDate,
-        arrayPromemoria,
-        description,
-        priority,
-        color
-      ) VALUES (
-        '$promemoria.title',
-        '$promemoria.creationDate',
-        '$promemoria.lastModificationDate',
-        '$promemoria.expirationDate',
-        '$promemoria.arrayPromemoria.toString()',
-        '$promemoria.description',
-        '$promemoria.priority',
-        '$promemoria.color'
-      )
-    ''');
+    print('note $note.title inserted');
+  }
+
+  Future<void> createPromemoria(
+      Database database, Promemoria promemoria) async {
+    await database.insert(
+      'promemoria',
+      promemoria.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
 
     print('promemoria $promemoria.title inserted');
   }
-
 
   Future<Map<String, Object?>> readPromemoria(int id) async {
     final db = await database;
@@ -252,23 +235,25 @@ class NoteDatabase {
     return results.first;
   }
 
-
   Future<Map<String, Object?>> readNote(int id) async {
     final db = await database;
 
-    final results= await db.query('SELECT * FROM promemoria where id=$id');
+    final results = await db.query('SELECT * FROM promemoria where id=$id');
 
     return results.first;
   }
 
-//  Future<void> updatePromemoria(Promemoria promemoria) async {
-  //  final db = await database;
+  Future<void> updatePromemoria(Promemoria promemoria) async {
+    final db = await database;
 
-  //await db.update('promemoria', promemoria, where: 'id = ?',
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
-//  whereArgs: [dog.id],)
-//}
+    await db.update('promemoria', promemoria.toMap(),
+        where: 'id = ?', whereArgs: [promemoria.getId()]);
+  }
 
+  Future<void> updateNote(Note note) async {
+    final db = await database;
 
+    await db.update('note', note.toMap(),
+        where: 'id = ?', whereArgs: [note.getId()]);
+  }
 }
-
