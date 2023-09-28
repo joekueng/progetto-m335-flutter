@@ -19,7 +19,6 @@ class _CreateNewNoteState extends State<CreateNewNote> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
