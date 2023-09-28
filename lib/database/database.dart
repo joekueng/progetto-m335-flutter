@@ -1,4 +1,6 @@
+import 'package:path/path.dart';
 import 'package:progetto_m335_flutter/model/note.dart';
+import 'package:sqflite/sqflite.dart';
 
 class Database{
   static final Database _instance = Database._init();
@@ -22,6 +24,7 @@ class Database{
         
       )
     ''');
+
   }
 
   execute(String s) {
