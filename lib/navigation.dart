@@ -5,6 +5,7 @@ import 'pages/testUI.dart';
 import 'pages/TodayView.dart';
 import 'pages/InboxView.dart';
 import 'pages/NotesView.dart';
+import 'pages/test.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -41,6 +42,7 @@ class _NavigationState extends State<Navigation> {
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
+          type: BottomNavigationBarType.fixed,
       ),
     );
   }
