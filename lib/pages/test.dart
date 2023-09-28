@@ -29,6 +29,14 @@ class _TestState extends State<Test> {
     print("Data printed");
   }
 
+  Future<void> _deletedatabase() async {
+    final db = await noteDatabase.database;
+
+    print("Deleting database");
+    await db.delete(noteTable);
+    print("Database deleted");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +44,8 @@ class _TestState extends State<Test> {
             child: Column(
               children: [
                 FloatingActionButton(onPressed: _pressed),
-                FloatingActionButton(onPressed: _printdata)
+                FloatingActionButton(onPressed: _printdata),
+                FloatingActionButton(onPressed: _deletedatabase)
               ],
             )
         )
