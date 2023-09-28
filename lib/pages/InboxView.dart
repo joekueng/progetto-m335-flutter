@@ -22,12 +22,17 @@ class _InboxViewState extends State<InboxView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Inbox'),
+        title: Text(
+          'Inbox',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.cyan.shade700,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white),
+        backgroundColor: Colors.cyan.shade700,
       ),
       body: Container(
         child: ListView.builder(
@@ -40,7 +45,7 @@ class _InboxViewState extends State<InboxView> {
                   value: _values[index],
                   onChanged: (newValue) => _onChanged(index, newValue),
                 ),
-                title: Text("ciao", style: TextStyle(color: Colors.lightBlue.shade900, fontWeight: FontWeight.bold)),
+                title: Text("ciao", style: TextStyle(color: Colors.cyan.shade700, fontWeight: FontWeight.bold)),
                 subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Descrizione della nota:')]),
                 onTap: () {
                   Navigator.of(context).push(
