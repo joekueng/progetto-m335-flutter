@@ -7,5 +7,6 @@ class Note extends BaseEntity {
   static String title = BaseEntity.getTitle;
   static String creationDate = BaseEntity.getCreationDate;
   static String lastModificationDate = BaseEntity.getLastEditDate;
+  static String arrayPromemoria = '';
   static String description = '';
 }
