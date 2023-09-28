@@ -14,6 +14,7 @@ class TodayView extends StatefulWidget {
 class _TodayViewState extends State<TodayView> {
   @override
   Widget build(BuildContext context) {
+
     return ListView(
       children: <Widget>[
         Reminder(),
