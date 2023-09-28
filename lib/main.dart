@@ -3,4 +3,5 @@ import 'myApp.dart';
 
 void main() {
   runApp(MyApp());
+  print("App started");
 }
