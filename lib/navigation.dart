@@ -36,14 +36,14 @@ class _NavigationState extends State<Navigation> {
       ),
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today), label: "today"),
-          BottomNavigationBarItem(icon: Icon(Icons.inbox), label: "Inbox"),
-          BottomNavigationBarItem(icon: Icon(Icons.note), label: "Notes"),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.today), label: "today"),
+            BottomNavigationBarItem(icon: Icon(Icons.inbox), label: "Inbox"),
+            BottomNavigationBarItem(icon: Icon(Icons.note), label: "Notes"),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
       ),
     );
   }

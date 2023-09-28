@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+//import components
+import '../Components/Reminder.dart';
+import '../Components/EditReminder.dart';
+
 class TodayView extends StatefulWidget {
   const TodayView({super.key});
 
@@ -10,10 +14,11 @@ class TodayView extends StatefulWidget {
 class _TodayViewState extends State<TodayView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Icon(Icons.calendar_today)
-      )
+    return ListView(
+      children: <Widget>[
+        Reminder(),
+        Reminder(),
+    ]
     );
   }
 }

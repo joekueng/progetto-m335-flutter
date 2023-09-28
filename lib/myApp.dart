@@ -9,8 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My App',
       theme: ThemeData(
-        useMaterial3: true,
-        primaryColor: Colors.red,
+        useMaterial3: true, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.orange, primary: Colors.blueAccent, background: Colors.white),
       ),
       home: Navigation()
     );
