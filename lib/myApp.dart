@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
       title: 'My App',
       theme: ThemeData(
         useMaterial3: true,
-        primaryColor: Colors.red,
       ),
       home: Navigation()
     );
