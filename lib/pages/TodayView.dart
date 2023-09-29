@@ -16,6 +16,14 @@ class _TodayViewState extends State<TodayView> {
 
   var _selectedDate = DateTime.now();
 
+  List<Promemoria> listaPromemoria = [
+    new Promemoria("Primo promemoria"),
+    new Promemoria("Secondo promemoria"),
+    new Promemoria("Terzo promemoria"),
+  ];
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +41,19 @@ class _TodayViewState extends State<TodayView> {
         ),
       ),
       body: ListView(
-          children: const <Widget>[
-            Reminder(),
-            Reminder(),
-            QuickReminder()
-          ],
+        children: [
+          ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: listaPromemoria.length,
+            itemBuilder: (BuildContext context, int index){
+              return Reminder(
+                listaPromemoria[index]
+              );
+            },
+          ),
+          QuickReminder(),
+        ],
       ),
     );
   }

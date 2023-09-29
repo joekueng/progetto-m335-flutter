@@ -19,8 +19,8 @@ class _InboxViewState extends State<InboxView> {
         ),
         body: ListView(
           children: const <Widget>[
-            Reminder(),
-            Reminder(),
+           /* Reminder(),
+            Reminder(),*/
           ],
         )
     );
