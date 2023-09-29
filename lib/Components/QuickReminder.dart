@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../database/controller.dart';
+import 'package:progetto_m335_flutter/database/database.dart';
 import '../model/promemoria.dart';
 import '../navigation.dart';
 
@@ -11,7 +11,7 @@ class QuickReminder extends StatefulWidget {
 }
 
 class _QuickReminderState extends State<QuickReminder> {
-  Controller controller = Controller();
+  NoteDatabase db = NoteDatabase.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _QuickReminderState extends State<QuickReminder> {
             labelText: 'New Reminder',
           ),
           onSubmitted: (String value) {
-            controller.addPromemoria(Promemoria.today(
+            db.addPromemoria(Promemoria.today(
                 value,
                 DateTime.now().toString(),
                 DateTime.now().toString(),

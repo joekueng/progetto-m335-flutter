@@ -63,14 +63,26 @@ class NoteDatabase {
 
   Future<List<Note>> getAllNote() async {
     var notes = await _database?.query(noteTable);
-    List<Note> noteList = notes!.map((e) => Note.fromJson(e)).toList();
+
+    if(notes == null) {
+      return [];
+    }
+
+    List<Note> noteList = notes.map((e) => Note.fromJson(e)).toList();
     return noteList;
   }
 
   Future<List<Promemoria>> getAllPromemoria() async {
     var promemorias = await _database?.query(promemoriaTable);
+
+    if(promemorias == null) {
+      return [];
+    }
+
     List<Promemoria> promemoriaList =
-    promemorias!.map((e) => Promemoria.fromJson(e)).toList();
+    promemorias.map((e) => Promemoria.fromJson(e)).toList();
+
+
     return promemoriaList;
   }
 
@@ -102,6 +114,8 @@ class NoteDatabase {
     '${note.description}'
   )
 ''');
+
+    syncData();
   }
 
   //add Promemoria
@@ -127,6 +141,8 @@ class NoteDatabase {
         '${promemoria.color}'
       )
     ''');
+
+    syncData();
   }
 
   void deleteAll() async {
