@@ -5,14 +5,14 @@ const String promemoriaTable = 'promemoria';
 
 class Promemoria {
   String id = '';
-  String title;
-  String creationDate;
-  String lastModificationDate;
-  String expirationDate;
-  String? arrayPromemoria;
-  String description;
-  String priority;
-  String color;
+  String title = '';
+  String creationDate = '';
+  String lastModificationDate = '';
+  String expirationDate = '';
+  String? arrayPromemoria = '';
+  String description = '';
+  String priority = '';
+  String color = '';
 
   Promemoria(
       this.id,

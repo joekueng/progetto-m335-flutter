@@ -30,7 +30,7 @@ class _ReminderState extends State<Reminder> {
         onChanged: _onChanged,
       ),
       title: Text(widget.promemoria?.getTitle() ?? 'Nessun titolo'),
-      subtitle: Text(DateTime.now().toString()),
+      subtitle: Text(widget.promemoria!.getExpirationDate().toString()),
       onTap: () {
         Navigator.push(
           context,
