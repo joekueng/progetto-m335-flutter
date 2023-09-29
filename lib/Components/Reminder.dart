@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../Components/EditReminderButton.dart';
 import '../model/promemoria.dart';
 import '../pages/EditReminder.dart';
 
@@ -21,8 +20,6 @@ class _ReminderState extends State<Reminder> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -35,7 +32,7 @@ class _ReminderState extends State<Reminder> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => EditReminder()),
+          MaterialPageRoute(builder: (context) => EditReminder(widget.promemoria)),
         );
       },
     );

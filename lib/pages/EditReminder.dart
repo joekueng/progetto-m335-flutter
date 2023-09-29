@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '../model/promemoria.dart';
 
 class EditReminder extends StatefulWidget {
-  const EditReminder({super.key});
+  final Promemoria? promemoria;
+  const EditReminder(this.promemoria, {super.key});
 
   @override
   State<EditReminder> createState() => _EditReminderState();
@@ -28,7 +30,7 @@ class _EditReminderState extends State<EditReminder> {
         child: Column(
           children: <Widget>[
             TextField(
-              controller: TextEditingController(text: _title),
+              controller: TextEditingController(text: widget.promemoria?.description ?? ""),
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Title',

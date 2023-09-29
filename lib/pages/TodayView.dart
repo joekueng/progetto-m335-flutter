@@ -20,9 +20,10 @@ class _TodayViewState extends State<TodayView> {
     new Promemoria("Primo promemoria"),
     new Promemoria("Secondo promemoria"),
     new Promemoria("Terzo promemoria"),
+    new Promemoria("Quarto promemoria"),
+    new Promemoria("Quinto promemoria"),
+    new Promemoria("Sesto promemoria"),
   ];
-
-
 
   @override
   Widget build(BuildContext context) {

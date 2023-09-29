@@ -12,7 +12,7 @@ class Promemoria extends BaseEntity {
 
   static Color color = Color.none;
 
-  Promemoria(String description){
+  Promemoria(String description) : super(){
     this.description = description;
   }
 
