@@ -58,7 +58,9 @@ class _TestState extends State<Test> {
     print(await db.query(noteTable));
     print("Data printed");
 
-
+    print("savedata from database to firebase");
+    controller.syncData();
+    print("data saved");
 
   }
 
