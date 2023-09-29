@@ -19,7 +19,7 @@ class _TodayViewState extends State<TodayView> {
 
   List<Promemoria> listaPromemoria = [];
 
-  NoteDatabase db = NoteDatabase.instance;
+  NoteDatabase noteDatabase = NoteDatabase.instance;
 
   /*[
     Promemoria.today("Primo promemoria", DateTime.now().toString(), DateTime.now().toString(), DateTime.now().toString(), "Descrizione primo promemoria"),
@@ -27,7 +27,8 @@ class _TodayViewState extends State<TodayView> {
   ];*/
 
   getAllPromemoria() async {
-    List<Promemoria> temp = await db.getAllPromemoria() as List<Promemoria>;
+    final db = await noteDatabase.database;
+    List<Promemoria> temp = await noteDatabase.getAllPromemoria() as List<Promemoria>;
     setState(() {
       listaPromemoria = temp;
     });

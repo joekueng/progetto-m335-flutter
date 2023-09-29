@@ -11,7 +11,7 @@ class QuickReminder extends StatefulWidget {
 }
 
 class _QuickReminderState extends State<QuickReminder> {
-  NoteDatabase db = NoteDatabase.instance;
+  NoteDatabase noteDatabase = NoteDatabase.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,9 @@ class _QuickReminderState extends State<QuickReminder> {
           decoration: const InputDecoration(
             labelText: 'New Reminder',
           ),
-          onSubmitted: (String value) {
-            db.addPromemoria(Promemoria.today(
+          onSubmitted: (String value) async{
+            final db = await noteDatabase.database;
+            noteDatabase.addPromemoria(Promemoria.today(
                 value,
                 DateTime.now().toString(),
                 DateTime.now().toString(),
