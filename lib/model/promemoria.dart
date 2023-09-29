@@ -123,7 +123,7 @@ class Promemoria {
 
   static Promemoria fromJson(Map<String, dynamic> data) {
     Promemoria promemoria = Promemoria(
-        data['id'],
+        data['id'].toString(),
         data['title'],
         data['creationDate'],
         data['lastModificationDate'],
