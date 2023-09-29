@@ -19,6 +19,7 @@ class _NoteDetailViewState extends State<NoteDetailView> {
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
