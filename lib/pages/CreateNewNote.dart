@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:progetto_m335_flutter/pages/NotesView.dart';
 
-class NoteDetailView extends StatefulWidget {
-  const NoteDetailView({Key? key}) : super(key: key);
+class CreateNewNote extends StatefulWidget {
+  const CreateNewNote({Key? key}) : super(key: key);
 
   @override
-  State<NoteDetailView> createState() => _NoteDetailViewState();
+  State<CreateNewNote> createState() => _CreateNewNoteState();
 }
 
-class _NoteDetailViewState extends State<NoteDetailView> {
+class _CreateNewNoteState extends State<CreateNewNote> {
   TextEditingController _titleController = TextEditingController();
   TextEditingController _textController = TextEditingController();
 
@@ -23,7 +23,7 @@ class _NoteDetailViewState extends State<NoteDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit note'),
+        title: Text('Create New Note'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

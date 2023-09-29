@@ -67,7 +67,7 @@ class NoteDatabase {
   }
 
   Future fillDemoData(Database database, int version) async {
-    
+
     print("boh speriamo funzioni");
     // Add some fake accounts
 
