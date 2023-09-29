@@ -17,9 +17,8 @@ class _TodayViewState extends State<TodayView> {
   var _selectedDate = DateTime.now();
 
   List<Promemoria> listaPromemoria = [
-    new Promemoria("Primo promemoria"),
-    new Promemoria("Secondo promemoria"),
-    new Promemoria("Terzo promemoria"),
+    Promemoria.today("Primo promemoria", DateTime.now().toString(), DateTime.now().toString(), DateTime.now().toString(), "Descrizione primo promemoria"),
+    Promemoria.today("Secondo promemoria", DateTime.now().toString(), DateTime.now().toString(), DateTime.now().toString(), "Descrizione secondo promemoria"),
   ];
 
 
@@ -45,10 +44,10 @@ class _TodayViewState extends State<TodayView> {
           ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: listaPromemoria.length,
+            itemCount: listaPromemoria?.length,
             itemBuilder: (BuildContext context, int index){
               return Reminder(
-                listaPromemoria[index]
+                listaPromemoria?[index]
               );
             },
           ),
