@@ -7,10 +7,13 @@ const String promemoriaTable = 'promemoria';
 class Promemoria extends BaseEntity {
   static String expirationDate = '';
   static String arrayPromemoria = '';
-  static String description = '';
+  String description = '';
   static Priority priority = Priority.none;
 
   static Color color = Color.none;
 
+  Promemoria(String description){
+    this.description = description;
+  }
 
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../Components/EditReminderButton.dart';
+import '../model/promemoria.dart';
 import '../pages/EditReminder.dart';
 
 class Reminder extends StatefulWidget {
-  const Reminder({super.key});
+  final Promemoria? promemoria;
+  const Reminder(this.promemoria, {super.key});
 
   @override
   State<Reminder> createState() => _ReminderState();
@@ -19,6 +21,8 @@ class _ReminderState extends State<Reminder> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -26,7 +30,7 @@ class _ReminderState extends State<Reminder> {
         value: _value,
         onChanged: _onChanged,
       ),
-      title: Text("Reminder"),
+      title: Text(widget.promemoria?.description ?? 'Nessun titolo'),
       subtitle: Text(DateTime.now().toString()),
       onTap: () {
         Navigator.push(
