@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../Components/EditReminderButton.dart';
 import '../model/promemoria.dart';
 import '../pages/EditReminder.dart';
 
@@ -30,12 +29,12 @@ class _ReminderState extends State<Reminder> {
         value: _value,
         onChanged: _onChanged,
       ),
-      title: Text(widget.promemoria?.description ?? 'Nessun titolo'),
+      title: Text(widget.promemoria?.getTitle() ?? 'Nessun titolo'),
       subtitle: Text(DateTime.now().toString()),
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => EditReminder()),
+          MaterialPageRoute(builder: (context) => EditReminder(widget.promemoria)),
         );
       },
     );

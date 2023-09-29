@@ -6,14 +6,14 @@ const String promemoriaTable = 'promemoria';
 
 class Promemoria {
   String id = '';
-  String title;
-  String creationDate;
-  String lastModificationDate;
-  String expirationDate;
-  String arrayPromemoria;
-  String description;
-  String priority;
-  String color;
+  String title = '';
+  String creationDate = '';
+  String lastModificationDate = '';
+  String expirationDate = '';
+  String arrayPromemoria = '';
+  String description = '';
+  String priority = '';
+  String color = '';
 
   Promemoria(
       this.id,
@@ -34,7 +34,23 @@ class Promemoria {
       this.arrayPromemoria,
       this.description,
       this.priority,
-      this.color);
+      this.color
+    );
+
+  Promemoria.today(
+      this.title,
+      this.creationDate,
+      this.lastModificationDate,
+      this.expirationDate,
+      this.description,
+  );
+
+  Promemoria.inbox(
+      this.title,
+      this.creationDate,
+      this.lastModificationDate,
+      this.description,
+  );
 
   Map<String, dynamic> toMap() {
     return {

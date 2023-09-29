@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:progetto_m335_flutter/model/promemoria.dart';
 
 class EditReminder extends StatefulWidget {
-  const EditReminder({super.key});
+  final Promemoria? promemoria;
+  const EditReminder(this.promemoria, {super.key});
 
   @override
   State<EditReminder> createState() => _EditReminderState();
 }
 
 class _EditReminderState extends State<EditReminder> {
-  String _title = "ciaciao";
-  String _description = "description";
+  final String _title = "ciaciao";
+  String _description = "";
   DateTime? _date;
 
   //Arraylist of promemoria
-
-  bool _hasDate = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    _description = widget.promemoria?.description ?? "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +33,23 @@ class _EditReminderState extends State<EditReminder> {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            TextField(
-              controller: TextEditingController(text: _title),
+            TextFormField(
+              initialValue: widget.promemoria?.title ?? "",
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Title',
               ),
+              onChanged: (text) {
+                setState(() {
+                  widget.promemoria?.setTitle(text);
+                });
+              },
             ),
             const SizedBox(height: 10),
-            TextField(
+            TextFormField(
+              initialValue: widget.promemoria?.description ?? "",
               onChanged: (text) {
+                print(text);
                 setState(() {
                   _description = text;
                 });
