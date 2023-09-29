@@ -1,4 +1,3 @@
-import 'base_entity.dart';
 import 'identifiers/enum/color.dart';
 import 'identifiers/enum/priority.dart';
 
@@ -10,7 +9,7 @@ class Promemoria {
   String creationDate;
   String lastModificationDate;
   String expirationDate;
-  String arrayPromemoria;
+  String? arrayPromemoria;
   String description;
   String priority;
   String color;
@@ -90,7 +89,7 @@ class Promemoria {
     expirationDate = expirationDate1;
   }
 
-  String getArrayPromemoria() {
+  String? getArrayPromemoria() {
     return arrayPromemoria;
   }
 
