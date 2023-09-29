@@ -1,9 +1,14 @@
+import 'package:progetto_m335_flutter/database/FireDb.dart';
+
 import '../model/note.dart';
 import '../model/promemoria.dart';
 import 'database.dart';
+import 'package:sqflite/sqflite.dart';
 
 class Controller {
   NoteDatabase database = NoteDatabase.instance;
+  FireDb fireDb = FireDb();
+
 
   Future<List<Note>> getAllNote() async {
     final db = await database.database;
@@ -78,4 +83,40 @@ class Controller {
       )
     ''');
   }
+
+  void deleteAll() async {
+    final db = await database.database;
+    await db.execute('''
+      DELETE FROM promemoria
+    ''');
+
+    await db.execute('''
+      DELETE FROM note
+    ''');
+  }
+
+
+  void getDataFromFirebase(Database database, int version) async {
+    this.deleteAll();
+
+    var promemorias = await fireDb.readAllPromemoria();
+    var notes = await fireDb.readAllNotes();
+
+    for (var promemoria in promemorias) {
+      this.addPromemoria(promemoria);
+    }
+
+    for (var note in notes) {
+      this.addNote(note);
+    }
+  }
+
+  void syncData() async {
+    var promemorias = await this.getAllPromemoria();
+    var notes = await this.getAllNote();
+
+    await fireDb.createAllPromemoria(promemorias);
+    await fireDb.createAllNotes(notes);
+  }
+
 }
