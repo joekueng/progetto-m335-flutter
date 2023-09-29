@@ -6,14 +6,14 @@ const String promemoriaTable = 'promemoria';
 
 class Promemoria {
   String id = '';
-  String title = '';
-  String creationDate = '';
-  String lastModificationDate = '';
-  String expirationDate = '';
-  String arrayPromemoria = '';
-  String description = '';
-  String priority = '';
-  String color = '';
+  String title;
+  String creationDate;
+  String lastModificationDate;
+  String expirationDate;
+  String? arrayPromemoria;
+  String description;
+  String priority;
+  String color;
 
   Promemoria(
       this.id,
@@ -106,7 +106,7 @@ class Promemoria {
     expirationDate = expirationDate1;
   }
 
-  String getArrayPromemoria() {
+  String? getArrayPromemoria() {
     return arrayPromemoria;
   }
 
@@ -140,7 +140,7 @@ class Promemoria {
 
   static Promemoria fromJson(Map<String, dynamic> data) {
     Promemoria promemoria = Promemoria(
-        data['id'],
+        data['id'].toString(),
         data['title'],
         data['creationDate'],
         data['lastModificationDate'],

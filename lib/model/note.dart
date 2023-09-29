@@ -1,13 +1,13 @@
-import 'base_entity.dart';
+
 
 const String noteTable = 'note';
 
 class Note{
-  String id;
+  String id='';
   String title;
   String creationDate;
   String lastModificationDate;
-  String arrayPromemoria;
+  String? arrayPromemoria;
   String description;
 
   Map<String, dynamic> toMap() {
@@ -23,6 +23,14 @@ class Note{
 
   Note(
     this.id,
+    this.title,
+    this.creationDate,
+    this.lastModificationDate,
+    this.arrayPromemoria,
+    this.description,
+  );
+
+  Note.newConstructor(
     this.title,
     this.creationDate,
     this.lastModificationDate,
@@ -62,7 +70,7 @@ class Note{
     lastModificationDate = lastModificationDate1;
   }
 
-  String getArrayPromemoria() {
+  String? getArrayPromemoria() {
     return arrayPromemoria;
   }
 
@@ -79,7 +87,7 @@ class Note{
   }
 
   static Note fromJson(Map<String, dynamic> data) => Note(
-      data['id'],
+      data['id'].toString(),
       data['title'],
       data['creationDate'],
       data['lastModificationDate'],
