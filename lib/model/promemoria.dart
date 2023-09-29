@@ -1,4 +1,3 @@
-import 'base_entity.dart';
 import 'identifiers/enum/color.dart';
 import 'identifiers/enum/priority.dart';
 
@@ -6,14 +5,14 @@ const String promemoriaTable = 'promemoria';
 
 class Promemoria {
   String id = '';
-  String title = '';
-  String creationDate = '';
-  String lastModificationDate = '';
-  String expirationDate = '';
-  String arrayPromemoria = '';
-  String description = '';
-  String priority = '';
-  String color = '';
+  String title;
+  String creationDate;
+  String lastModificationDate;
+  String expirationDate;
+  String? arrayPromemoria;
+  String description;
+  String priority;
+  String color;
 
   Promemoria(
       this.id,
@@ -34,23 +33,7 @@ class Promemoria {
       this.arrayPromemoria,
       this.description,
       this.priority,
-      this.color
-    );
-
-  Promemoria.today(
-      this.title,
-      this.creationDate,
-      this.lastModificationDate,
-      this.expirationDate,
-      this.description,
-  );
-
-  Promemoria.inbox(
-      this.title,
-      this.creationDate,
-      this.lastModificationDate,
-      this.description,
-  );
+      this.color);
 
   Map<String, dynamic> toMap() {
     return {
@@ -106,7 +89,7 @@ class Promemoria {
     expirationDate = expirationDate1;
   }
 
-  String getArrayPromemoria() {
+  String? getArrayPromemoria() {
     return arrayPromemoria;
   }
 
