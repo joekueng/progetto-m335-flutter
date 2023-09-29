@@ -87,7 +87,7 @@ class Note{
   }
 
   static Note fromJson(Map<String, dynamic> data) => Note(
-      data['id'],
+      data['id'].toString(),
       data['title'],
       data['creationDate'],
       data['lastModificationDate'],
