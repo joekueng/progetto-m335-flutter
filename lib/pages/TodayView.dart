@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:progetto_m335_flutter/database/database.dart';
 
 //import components
 import '../Components/Reminder.dart';
 import '../Components/QuickReminder.dart';
 import '../model/promemoria.dart';
-import '../database/controller.dart';
 
 class TodayView extends StatefulWidget {
   const TodayView({super.key});
@@ -15,11 +15,11 @@ class TodayView extends StatefulWidget {
 
 class _TodayViewState extends State<TodayView> {
 
-  Controller controller = Controller();
-
   var _selectedDate = DateTime.now();
 
   List<Promemoria> listaPromemoria = [];
+
+  NoteDatabase db = NoteDatabase.instance;
 
   /*[
     Promemoria.today("Primo promemoria", DateTime.now().toString(), DateTime.now().toString(), DateTime.now().toString(), "Descrizione primo promemoria"),
@@ -27,7 +27,7 @@ class _TodayViewState extends State<TodayView> {
   ];*/
 
   getAllPromemoria() async {
-    List<Promemoria> temp = await controller.getAllPromemoria();
+    List<Promemoria> temp = await db.getAllPromemoria() as List<Promemoria>;
     setState(() {
       listaPromemoria = temp;
     });
