@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progetto_m335_flutter/database/database.dart';
 import 'package:progetto_m335_flutter/model/note.dart';
+import 'package:progetto_m335_flutter/model/promemoria.dart';
 
 import '../database/database.dart';
 
@@ -22,11 +23,43 @@ class _TestState extends State<Test> {
   }
 
   Future<void> _printdata() async {
+
+
+    var nota = Note.newConstructor(
+        "nota 5",
+        "2023-09-56",
+        "2028-03-1",
+        "1,2,3,4,5",
+        "Questo è un esempio di nota gesu benedetto 1.");
+
+    var promemoria = Promemoria.newConstructor(
+        "promemoria 5",
+        "2023-09-56",
+        "2028-03-1",
+        "2028-03-1",
+        "1,2,3,4,5",
+        "Questo è un esempio di promemoria gesu benedetto 1.",
+        "alta",
+        "rosso");
+
+    noteDatabase.addNote(nota);
+    noteDatabase.addPromemoria(promemoria);
+
     final db = await noteDatabase.database;
 
     print("Printing data");
+    print((await noteDatabase.getAllPromemoria()).first);
+    print((await noteDatabase.getAllNote()).first);
+    print("promemoria");
+    print(await db.query(promemoriaTable));
+    print("note");
     print(await db.query(noteTable));
     print("Data printed");
+
+    print("savedata from database to firebase");
+    noteDatabase.syncData();
+    print("data saved");
+
   }
 
   @override

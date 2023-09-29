@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1079915493414",
+    "project_id": "progetto-m335-a4126",
+    "storage_bucket": "progetto-m335-a4126.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079915493414:android:1af31a3970a27c5c5d8ee7",
+        "android_client_info": {
+          "package_name": "ch.ameti.progetto_m335_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDANiNzXOXgtVKheZnTw7TCw40AFyIznGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,16 +1,13 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
-// Models
-import 'package:progetto_m335_flutter/model/note.dart';
+import '../model/note.dart';
+import 'FireDb.dart';
 import 'package:progetto_m335_flutter/model/promemoria.dart';
 
 class NoteDatabase {
   static final NoteDatabase instance = NoteDatabase._init();
   static Database? _database;
-
-  // Zero args constructor needed to extend this class
-  NoteDatabase();
+  FireDb fireDb = FireDb();
 
   NoteDatabase._init();
 
@@ -22,141 +19,38 @@ class NoteDatabase {
   }
 
   Future<Database> _initDB(String filePath) async {
-    // On Android, it is typically data/data//databases.
-    // On iOS and MacOS, it is the Documents directory.
     final databasePath = await getDatabasesPath();
-    // Directory databasePath = await getApplicationDocumentsDirectory();
 
     final path = join(databasePath, filePath);
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
   Future _createDB(Database database, int version) async {
-    //check if the database is created
-    if (database.query(noteTable) != null) {
-      print("Database already created");
-
-    }else{
-      print("demo data inserting");
-      await database.execute('''CREATE TABLE promemoria (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT NOT NULL,
-  creationDate TEXT NOT NULL,
-  lastModificationDate TEXT,
-  expirationDate TEXT,
-  description TEXT,
-  priority TEXT,
-  color TEXT
-);
+    await database.execute('''CREATE TABLE promemoria (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      creationDate TEXT NOT NULL,
+      lastModificationDate TEXT,
+      expirationDate TEXT,
+      arrayPromemoria TEXT,
+      description TEXT,
+      priority TEXT,
+      color TEXT
+    );
     ''');
 
-      await database.execute('''CREATE TABLE note (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title TEXT NOT NULL,
-  creationDate TEXT NOT NULL,
-  lastModificationDate TEXT,
-  description TEXT
-);
+    await database.execute('''CREATE TABLE note (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      creationDate TEXT NOT NULL,
+      lastModificationDate TEXT,
+      arrayPromemoria TEXT,
+      description TEXT
+     );
     ''');
 
-      print("database created");
-    }
-
-
-    await fillDemoData(database, version);
-  }
-
-  Future fillDemoData(Database database, int version) async {
-
-    print("boh speriamo funzioni");
-    // Add some fake accounts
-
-
-    // Add fake categories
-    await database.execute('''
-  INSERT INTO note (
-    title,
-    creationDate,
-    lastModificationDate,
-    description
-  ) VALUES (
-    'Nota 2',
-    '2023-09-28',
-    '2023-09-28',
-    'Questo è un esempio di nota 2.'
-  )
-''');
-
-
-    await database.execute('''
-  INSERT INTO note (
-    title,
-    creationDate,
-    lastModificationDate,
-    description
-  ) VALUES (
-    'Nota 2',
-    '2023-09-28',
-    '2023-09-28',
-    'Questo è un esempio di nota 2.'
-  )
-''');
-
-    // Add currencies
-    await database.execute('''
-  INSERT INTO promemoria (
-    title,
-    creationDate,
-    lastModificationDate,
-    expirationDate,
-    description,
-    priority,
-    color
-  ) VALUES (
-    'Promemoria 1',
-    '2023-09-27',
-    '2023-09-27',
-    '2023-10-05',
-    'Questo è un esempio di promemoria 1.',
-    'Alta',
-    'Rosso'
-  )
-''');
-
-    // Add fake budgets
-    await database.execute('''
-  INSERT INTO promemoria (
-    title,
-    creationDate,
-    lastModificationDate,
-    expirationDate,
-    description,
-    priority,
-    color
-  ) VALUES (
-    'Promemoria 2',
-    '2023-09-28',
-    '2023-09-28',
-    '2023-10-10',
-    'Questo è un esempio di promemoria 2.',
-    'Media',
-    'Verde'
-  )
-''');
-    print("Demo data inserted");
-  }
-
-  Future clearDatabase() async {
-    try {
-      await _database?.transaction((txn) async {
-        var batch = txn.batch();
-        batch.delete(noteTable);
-        batch.delete(promemoriaTable);
-        await batch.commit();
-      });
-    } catch (error) {
-      throw Exception('DbBase.cleanDatabase: $error');
-    }
+    print("database created");
+    getDataFromFirebase(database, version);
   }
 
   Future<List<Map>> selectAllPromemoria() async {
@@ -167,15 +61,124 @@ class NoteDatabase {
     return maps;
   }
 
-  Future close() async {
-    final database = await instance.database;
-    database.close();
+  Future<List<Note>> getAllNote() async {
+    var notes = await _database?.query(noteTable);
+
+    if(notes == null) {
+      return [];
+    }
+
+    List<Note> noteList = notes.map((e) => Note.fromJson(e)).toList();
+    return noteList;
   }
 
-  // WARNING: FOR DEV/TEST PURPOSES ONLY!!
-  Future<void> deleteDatabase() async {
-    final databasePath = await getDatabasesPath();
-    final path = join(databasePath, 'note.db');
-    databaseFactory.deleteDatabase(path);
+  Future<List<Promemoria>> getAllPromemoria() async {
+    var promemorias = await _database?.query(promemoriaTable);
+
+    if(promemorias == null) {
+      return [];
+    }
+
+    List<Promemoria> promemoriaList =
+    promemorias.map((e) => Promemoria.fromJson(e)).toList();
+
+
+    return promemoriaList;
+  }
+
+  Future<Note> getNoteById(int id) async {
+    var note = await _database?.query(noteTable, where: 'id = ?', whereArgs: [id]);
+    return Note.fromJson(note!.first);
+  }
+
+  Future<Promemoria> getPromemoriaById(int id) async {
+    var promemoria =
+    await _database?.query(promemoriaTable, where: 'id = ?', whereArgs: [id]);
+    return Promemoria.fromJson(promemoria!.first);
+  }
+
+  //add note
+  void addNote(Note note) async {
+    await _database?.execute('''
+  INSERT INTO note (
+    title,
+    creationDate,
+    lastModificationDate,
+    arrayPromemoria,
+    description
+  ) VALUES (
+    '${note.title}',
+    '${note.creationDate}',
+    '${note.lastModificationDate}',
+    '${note.arrayPromemoria}',
+    '${note.description}'
+  )
+''');
+
+    syncData();
+  }
+
+  //add Promemoria
+  void addPromemoria(Promemoria promemoria) async {
+    await _database?.execute('''
+     INSERT INTO promemoria (
+        title,
+        creationDate,
+        lastModificationDate,
+        expirationDate,
+        arrayPromemoria,
+        description,
+        priority,
+        color
+      ) VALUES (
+        '${promemoria.title}',
+        '${promemoria.creationDate}',
+        '${promemoria.lastModificationDate}',
+        '${promemoria.expirationDate}',
+        '${promemoria.arrayPromemoria}',
+        '${promemoria.description}',
+        '${promemoria.priority}',
+        '${promemoria.color}'
+      )
+    ''');
+
+    syncData();
+  }
+
+  void deleteAll() async {
+    await _database?.execute('''
+      DELETE FROM promemoria
+    ''');
+
+    await _database?.execute('''
+      DELETE FROM note
+    ''');
+  }
+
+
+  void getDataFromFirebase(Database database, int version) async {
+    this.deleteAll();
+
+    var promemorias = await fireDb.readAllPromemoria();
+    var notes = await fireDb.readAllNotes();
+
+    for (var promemoria in promemorias) {
+      this.addPromemoria(promemoria);
+    }
+
+    for (var note in notes) {
+      this.addNote(note);
+    }
+  }
+
+  void syncData() async {
+    var promemorias = await getAllPromemoria();
+    var notes = await getAllNote();
+
+    await fireDb.deleteAllPromemoria();
+    await fireDb.deleteAllNotes();
+
+    await fireDb.createAllPromemoria(promemorias);
+    await fireDb.createAllNotes(notes);
   }
 }
