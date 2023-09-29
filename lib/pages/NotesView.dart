@@ -27,8 +27,7 @@ class _NotesViewState extends State<NotesView> {
             ),
           );
         },
-        child: Icon(Icons.add, color: Colors.white,),
-        backgroundColor: Colors.cyan.shade700,
+        child: Icon(Icons.add),
       ),
 
 
