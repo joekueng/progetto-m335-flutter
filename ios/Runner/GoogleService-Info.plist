@@ -2,36 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-        <key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-        <string>ca-app-pub-3940256099942544/2934735716</string>
-        <key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-        <string>ca-app-pub-3940256099942544/4411468910</string>
-        <key>CLIENT_ID</key>
-        <string>test-do-not-use.apps.googleusercontent.com</string>
-        <key>REVERSED_CLIENT_ID</key>
-        <string>com.googleusercontent.apps.test-do-not-use</string>
-        <key>API_KEY</key>
-        <string>000000000000000000000000000000000000000</string>
-        <key>GCM_SENDER_ID</key>
-        <string>999999999999</string>
-        <key>PLIST_VERSION</key>
-        <string>1</string>
-        <key>BUNDLE_ID</key>
-        <string>com.google.example.BannerExample</string>
-        <key>IS_ADS_ENABLED</key>
-        <true/>
-        <key>IS_ANALYTICS_ENABLED</key>
-        <false/>
-        <key>IS_APPINVITE_ENABLED</key>
-        <false/>
-        <key>IS_GCM_ENABLED</key>
-        <true/>
-        <key>IS_SIGNIN_ENABLED</key>
-        <true/>
-        <key>GOOGLE_APP_ID</key>
-        <string>1:999999999999:ios:0000000000000000</string>
-        <key>DATABASE_URL</key>
-        <string>https://test-do-not-use.firebaseio.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB7BuSBQ9CHuM5C9HalgpOkGf8ZKr70H8M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1079915493414</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.flutter.flutter.app</string>
+	<key>PROJECT_ID</key>
+	<string>progetto-m335-a4126</string>
+	<key>STORAGE_BUCKET</key>
+	<string>progetto-m335-a4126.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1079915493414:ios:3f77c278459dca655d8ee7</string>
 </dict>
 </plist>
-
