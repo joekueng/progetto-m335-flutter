@@ -30,25 +30,59 @@ class _CreateNewNoteState extends State<CreateNewNote> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Title:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-            TextField(controller: _titleController, decoration: InputDecoration(hintText: 'Enter a title',),),
-            SizedBox(height: 16), // Spacing between title and text
-            Text('Text:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-            TextField(controller: _textController, maxLines: null, decoration: InputDecoration(hintText: 'Enter text', border: InputBorder.none,),
+            TextField(
+              controller: _titleController,
+              decoration: InputDecoration(
+                hintText: 'Enter a title',
+              ),
             ),
-          ],
+            SizedBox(height: 16),
+            TextField(
+              controller: _textController,
+              maxLines: null,
+              decoration: InputDecoration(
+                hintText: 'Enter text',
+                border: InputBorder.none,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Spacer(),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print("Delete button pressed");
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.delete),
+                        Text("Delete"),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      String title = _titleController.text;
+                      String text = _textController.text;
+                      _titleController.clear();
+                      _textController.clear();
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Save"),
+                  ),
+                ),
+              ],
+            ),
+          ], //
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          String title = _titleController.text;
-          String text = _textController.text;
-          _titleController.clear();
-          _textController.clear();
-
-        },
-        child: Icon(Icons.save, color: Colors.white,),
-        backgroundColor: Colors.lightBlue.shade900,
       ),
     );
   }
