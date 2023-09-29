@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'NoteDetailView.dart';
+import '../pages/NoteDetailView.dart';
 
 class Note extends StatefulWidget {
   const Note({super.key});
@@ -12,10 +12,7 @@ class _NotesViewState extends State<Note> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-
-      child: ListTile(
+    return  ListTile(
         title: Text("ciao", style: TextStyle(color: Colors.lightBlue.shade900, fontWeight: FontWeight.bold),),
         subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Descrizione della nota:'),],),
         onTap: () {
@@ -25,7 +22,6 @@ class _NotesViewState extends State<Note> {
             ),
           );
         },
-      ),
     );
   }
 }

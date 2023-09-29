@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Components/Note.dart';
 import 'CreateNewNote.dart';
 import 'NoteDetailView.dart';
 
@@ -16,8 +17,7 @@ class _NotesViewState extends State<NotesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Note', style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.cyan.shade700,
+        title: Text('Note'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -32,28 +32,12 @@ class _NotesViewState extends State<NotesView> {
       ),
 
 
-      body: Container(
-        child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return Card(
-              color: Colors.white,
-
-              child: ListTile(
-                title: Text("ciao", style: TextStyle(color: Colors.cyan.shade700, fontWeight: FontWeight.bold),),
-                subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Descrizione della nota:'),],),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const NoteDetailView(),
-                    ),
-                  );
-                },
-              ),
-            );
-          },
-        ),
-      ),
+      body:ListView(
+        children: const <Widget>[
+          Note(),
+          Note(),
+        ],
+      )
     );
   }
 }
