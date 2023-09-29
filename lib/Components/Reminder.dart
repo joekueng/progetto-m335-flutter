@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Components/EditReminderButton.dart';
+import '../pages/EditReminder.dart';
 
 class Reminder extends StatefulWidget {
   const Reminder({super.key});
@@ -27,7 +28,12 @@ class _ReminderState extends State<Reminder> {
       ),
       title: Text("Reminder"),
       subtitle: Text(DateTime.now().toString()),
-      trailing: EditReminderButton(),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EditReminder()),
+        );
+      },
     );
   }
 }

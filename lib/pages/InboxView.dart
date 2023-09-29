@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//import components
+import '../Components/Reminder.dart';
+
 class InboxView extends StatefulWidget {
   const InboxView({super.key});
 
@@ -10,9 +13,15 @@ class InboxView extends StatefulWidget {
 class _InboxViewState extends State<InboxView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
-          child: Icon(Icons.inbox),
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Inbox'),
+        ),
+        body: ListView(
+          children: const <Widget>[
+            Reminder(),
+            Reminder(),
+          ],
         )
     );
   }
